@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Plowed</string>
+    <string name="password">password</string>
+    <string name="username">username</string>
+    <string name="login">Login</string>
+    <string name="welcome_client">Welcome Client</string>
+    <string name="welcome_plower">Welcome Plower</string>
 </resources>
