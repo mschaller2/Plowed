@@ -23,6 +23,10 @@
         </activity>
         <activity android:name=".PlowerInfoActivity">
         </activity>
+        <activity android:name=".PlowerMapActivity">
+        </activity>
+        <activity android:name=".ClientMapActivity">
+        </activity>
     </application>
 
 </manifest>

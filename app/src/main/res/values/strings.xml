@@ -5,4 +5,5 @@
     <string name="login">Login</string>
     <string name="welcome_client">Welcome Client</string>
     <string name="welcome_plower">Welcome Plower</string>
+    <string name="background">background</string>
 </resources>
