@@ -22,6 +22,6 @@ public class PlowerInfoActivity extends AppCompatActivity {
     }
 
     public void goToMap(View view){
-        startActivity(new Intent(this, PlowerMapActivity.class));
+        startActivity(new Intent(this, MapsActivity.class));
     }
 }

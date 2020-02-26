@@ -21,7 +21,7 @@ public class ClientUserActivity extends AppCompatActivity {
     }
 
     public void goToMap(View view){
-        startActivity(new Intent(this, ClientMapActivity.class));
+        startActivity(new Intent(this, MapsActivity.class));
     }
 
 }
