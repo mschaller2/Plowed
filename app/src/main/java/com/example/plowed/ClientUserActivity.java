@@ -38,6 +38,8 @@ public class ClientUserActivity extends AppCompatActivity {
         String name = sharedPreferences.getString("username", "");
         textView.setText(String.format("Welcome %s", name));
 
+        //notificationManager = NotificationManagerCompat.from(this);
+
     }
 
     @Override
