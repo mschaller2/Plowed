@@ -25,8 +25,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
         android:onClick="goToMap"
         android:text="Request Plow" />
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="goToConfirmationListing"
+        android:text="Confirm" />  <!-- For future use of the confirm page-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -42,7 +50,7 @@
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:inputType="phone"
                 android:hint="Phone"
@@ -52,7 +60,7 @@
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:inputType="textPostalAddress"
                 android:hint="Address"
@@ -62,7 +70,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:hint="Email"
