@@ -93,4 +93,8 @@ public class ClientUserActivity extends AppCompatActivity {
         startActivity(new Intent(this, MapsActivity.class));
     }
 
+    public void goToConfirmationListing(View view){
+        startActivity(new Intent(this, ConfirmListing.class));
+    }
+
 }
