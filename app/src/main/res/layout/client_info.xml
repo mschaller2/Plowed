@@ -9,13 +9,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_client"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"/>
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="204dp"
-        android:layout_height="204dp"
+        android:layout_width="184dp"
+        android:layout_height="176dp"
+        android:layout_gravity="center"
         app:srcCompat="@drawable/stuck" />
+
+    <Button
+        android:id="@+id/toMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="goToMap"
+        android:text="Request Plow" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,7 +45,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:inputType="phone"
-                android:text="Phone"
+                android:hint="Phone"
                 android:textSize="24sp" />
 
             <EditText
@@ -44,7 +55,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:inputType="textPostalAddress"
-                android:text="Address"
+                android:hint="Address"
                 android:textSize="24sp" />
 
             <EditText
@@ -54,7 +65,7 @@
                 android:layout_marginBottom="20dp"
                 android:ems="10"
                 android:inputType="textEmailAddress"
-                android:text="Email"
+                android:hint="Email"
                 android:textSize="24sp" />
 
             <EditText
@@ -64,18 +75,9 @@
                 android:ems="10"
                 android:inputType="textPassword"
                 android:singleLine="false"
-                android:text="@string/password"
+                android:hint="@string/password"
                 android:textSize="24sp" />
 
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/toMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="goToMap"
-        android:text="Request Plow" />
-
 </LinearLayout>
