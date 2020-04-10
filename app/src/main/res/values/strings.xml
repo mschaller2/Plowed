@@ -10,5 +10,6 @@
     <string name="logout">Logout</string>
     <string name="confirm_listing">Confirm Listing</string>
     <string name="add_payment">Add Payment</string>
+    <string name="spinner_title">Year</string>
     <string name="delete">Delete Account</string>
 </resources>
