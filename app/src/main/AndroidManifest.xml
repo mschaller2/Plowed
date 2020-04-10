@@ -37,6 +37,7 @@
         <activity android:name=".PlowerInfoActivity" />
         <activity android:name=".ConfirmListing" />
         <activity android:name=".UpdateProfile" />
+        <activity android:name=".AddPaymentActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
