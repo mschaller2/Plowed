@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "233387826827",
+    "firebase_url": "https://plowed.firebaseio.com",
+    "project_id": "plowed",
+    "storage_bucket": "plowed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233387826827:android:fa09fafc6892140e79be8e",
+        "android_client_info": {
+          "package_name": "com.example.plowed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "233387826827-0o3e6jmdkq81vej4m7una34jfocu4s2c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.plowed",
+            "certificate_hash": "8e396aaf8f33fa341b343d00cb1de1850cdcbb34"
+          }
+        },
+        {
+          "client_id": "233387826827-7jeqnvb4bkls6peh53uubosvl679obof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxIsLQ7g8uFbncFxxBGWF7z8ND5g27xWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "233387826827-7jeqnvb4bkls6peh53uubosvl679obof.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

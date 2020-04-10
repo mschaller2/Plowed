@@ -39,7 +39,7 @@ public class PlowerInfoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         switch(item.getItemId()){
             case R.id.logout:
-                Intent intent = new Intent(this, LoginActivity.class);
+                Intent intent = new Intent(this, LoginUIActivity.class);
                 SharedPreferences sharedPreferences = getSharedPreferences("com.example.plowed", Context.MODE_PRIVATE);
                 sharedPreferences.edit().remove("username").apply();
                 startActivity(intent);

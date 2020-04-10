@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Plowed</string>
-    <string name="password">password</string>
-    <string name="username">username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
     <string name="login">Login</string>
     <string name="welcome_client">Welcome Client</string>
     <string name="welcome_plower">Welcome Plower</string>
@@ -9,4 +9,5 @@
     <string name="title_activity_maps">ClientMapActivity</string>
     <string name="logout">Logout</string>
     <string name="confirm_listing">Confirm Listing</string>
+    <string name="delete">Delete Account</string>
 </resources>

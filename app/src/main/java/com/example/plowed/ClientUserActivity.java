@@ -12,7 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,8 +25,9 @@ public class ClientUserActivity extends AppCompatActivity {
     TextView textView;
     Button toMap;
     private NotificationManagerCompat notificationManager;
-    //private EditText editTextTitle;
-    //private EditText editTextMessage;
+    private static final int LOGOUT = 2;
+    private static final int DELETE = 3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +50,16 @@ public class ClientUserActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        Intent intent = new Intent(this, LoginUIActivity.class);
+        intent.putExtra("action", "true");
         switch(item.getItemId()){
             case R.id.logout:
-                Intent intent = new Intent(this, LoginActivity.class);
-                SharedPreferences sharedPreferences = getSharedPreferences("com.example.plowed", Context.MODE_PRIVATE);
-                sharedPreferences.edit().remove("username").apply();
-                startActivity(intent);
+                setResult(LOGOUT, intent);
+                finish();
+                break;
+            case R.id.delete:
+                setResult(DELETE, intent);
+                finish();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
