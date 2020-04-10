@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
@@ -15,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class LoginUIActivity extends AppCompatActivity {
@@ -63,6 +63,9 @@ public class LoginUIActivity extends AppCompatActivity {
                     // sign in fail
                     if (response != null){
                         Log.e("login_error", response.toString());
+                        Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
+                        // todo check
+                        createSignInIntent();
                     }
                     // user pressed back, handle
                 }
@@ -79,7 +82,6 @@ public class LoginUIActivity extends AppCompatActivity {
                     break;
             }
         }
-
     }
     public void signOut(){
         AuthUI.getInstance()
@@ -91,7 +93,6 @@ public class LoginUIActivity extends AppCompatActivity {
                     }
                 });
     }
-
     public void delete(){
         AuthUI.getInstance()
                 .delete(this)

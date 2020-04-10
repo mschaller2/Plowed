@@ -11,8 +11,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.firebase.FirebaseApiNotAvailableException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,24 +31,33 @@ import androidx.core.app.NotificationManagerCompat;
 import static com.example.plowed.App.CHANNEL_1_ID;
 
 public class ClientUserActivity extends AppCompatActivity {
-    TextView textView;
+    TextView clientName;
     Button toMap;
+    EditText address;
+    WebView webView;
+
     private NotificationManagerCompat notificationManager;
     private static final int LOGOUT = 2;
     private static final int DELETE = 3;
-
+    private FirebaseUser mUser;
+    private static final String WEATHER = "https://weather.com";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.client_info);
-        textView = (TextView) findViewById(R.id.client);
+        clientName = (TextView) findViewById(R.id.client);
         toMap = (Button) findViewById(R.id.toMap);
-        SharedPreferences sharedPreferences = getSharedPreferences("com.example.plowed", Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("username", "");
-        textView.setText(String.format("Welcome %s", name));
+        address = (EditText) findViewById(R.id.address);
+        webView = (WebView) findViewById(R.id.weather);
+        webView.loadUrl(WEATHER);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        userConfig();
+    }
 
-        //notificationManager = NotificationManagerCompat.from(this);
-
+    private void userConfig(){
+        // may be empty
+        clientName.setText(String.format(Locale.ENGLISH, "Welcome %s",
+                mUser.getDisplayName()));
     }
 
     @Override
@@ -61,11 +79,15 @@ public class ClientUserActivity extends AppCompatActivity {
                 setResult(DELETE, intent);
                 finish();
                 break;
+            case R.id.settings:
+                Intent update = new Intent(this, UpdateProfile.class);
+                startActivity(update);
             default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
     }
+    /*
     public void sendNotification(View v){
         //String title = editTextTitle.getText().toString();
         //String message = editTextMessage.getText().toString();
@@ -92,6 +114,7 @@ public class ClientUserActivity extends AppCompatActivity {
 
         notificationManager.notify(1, notification);
     }
+     */
 
     public void goToMap(View view){
         startActivity(new Intent(this, MapsActivity.class));

@@ -13,12 +13,11 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp"/>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="184dp"
-        android:layout_height="176dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/stuck" />
+    <WebView
+        android:id="@+id/weather"
+        android:layout_width="325dp"
+        android:layout_height="470dp"
+        android:layout_gravity="center" />
 
     <Button
         android:id="@+id/toMap"
@@ -27,65 +26,20 @@
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:onClick="goToMap"
-        android:text="Request Plow" />
+        android:text="Select Address on Map" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Manually Enter Address"/>
     <Button
         android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="goToConfirmationListing"
-        android:text="Confirm" />  <!-- For future use of the confirm page-->
+        android:text="Request Plowing Service" />  <!-- For future use of the confirm page-->
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:inputType="phone"
-                android:hint="Phone"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:inputType="textPostalAddress"
-                android:hint="Address"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:hint="Email"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:singleLine="false"
-                android:hint="@string/password"
-                android:textSize="24sp" />
-
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>
