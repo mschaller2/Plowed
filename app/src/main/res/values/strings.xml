@@ -9,5 +9,6 @@
     <string name="title_activity_maps">ClientMapActivity</string>
     <string name="logout">Logout</string>
     <string name="confirm_listing">Confirm Listing</string>
+    <string name="add_payment">Add Payment</string>
     <string name="delete">Delete Account</string>
 </resources>

@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -20,14 +21,14 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity android:name=".BaseActivity">
-        </activity>
+        <activity android:name=".BaseActivity"></activity>
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".LoginUIActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -38,6 +39,7 @@
         </activity>
         <activity android:name=".PlowerInfoActivity" />
         <activity android:name=".ConfirmListing" />
+        <activity android:name=".AddPaymentActivity"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

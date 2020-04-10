@@ -11,4 +11,24 @@
         android:layout_gravity="center"
         android:textSize="30sp"
         android:layout_marginTop="15dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Confirm Listing"
+        android:layout_gravity="center"/>
+
 </LinearLayout>
