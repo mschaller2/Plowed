@@ -58,7 +58,7 @@ public class ClientUserActivity extends AppCompatActivity {
     private static final int DELETE = 3;
     private FirebaseUser mUser;
     String City = "madison";
-    String API = "3949111d62c8c82567dd618909b7f86d";
+    String API = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
