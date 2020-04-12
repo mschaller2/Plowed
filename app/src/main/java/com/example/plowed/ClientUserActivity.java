@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,12 +17,24 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApiNotAvailableException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import com.androdocs.httprequest.HttpRequest;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
@@ -28,19 +42,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import static com.example.plowed.App.CHANNEL_1_ID;
 
 public class ClientUserActivity extends AppCompatActivity {
     TextView clientName;
+    TextView temperature;
     Button toMap;
     EditText address;
-    WebView webView;
 
     private NotificationManagerCompat notificationManager;
     private static final int LOGOUT = 2;
     private static final int DELETE = 3;
     private FirebaseUser mUser;
-    private static final String WEATHER = "https://weather.com";
+    String City = "madison";
+    String API = "3949111d62c8c82567dd618909b7f86d";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +66,42 @@ public class ClientUserActivity extends AppCompatActivity {
         clientName = (TextView) findViewById(R.id.client);
         toMap = (Button) findViewById(R.id.toMap);
         address = (EditText) findViewById(R.id.address);
-        webView = (WebView) findViewById(R.id.weather);
-        webView.loadUrl(WEATHER);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
+        temperature = (TextView) findViewById(R.id.temperature);
+        temperature.setText("Click Button To Update Temperature");
         userConfig();
+    }
+
+    public void updateWeather(View view) {
+        new weatherTask().execute();
+    }
+
+    class weatherTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected String doInBackground(String... args) {
+            String response = HttpRequest.excuteGet("https://api.openweathermap.org/data/2.5/weather?q=" + City + "&appid=" + API+"&units=imperial");
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+
+            try {
+                JSONObject jsonObj = new JSONObject(result);
+                JSONObject main = jsonObj.getJSONObject("main");
+                String temp = main.getString("temp") ;
+                temperature.setText(temp + "Degrees F");
+
+            } catch (JSONException e) {
+
+            }
+
+        }
     }
 
     private void userConfig(){
@@ -123,5 +173,8 @@ public class ClientUserActivity extends AppCompatActivity {
     public void goToConfirmationListing(View view){
         startActivity(new Intent(this, ConfirmListing.class));
     }
+
+
+
 
 }

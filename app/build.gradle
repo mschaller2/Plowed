@@ -30,5 +30,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.firebase:firebase-auth:19.3.0'
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
-
+    implementation 'com.github.androdocs:Simple-HTTP-Request:v1.0'
 }

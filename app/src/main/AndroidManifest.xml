@@ -3,6 +3,7 @@
     package="com.example.plowed">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".App"
@@ -12,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".weather_test" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -26,6 +28,7 @@
         <activity android:name=".LoginUIActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -37,7 +40,7 @@
         <activity android:name=".PlowerInfoActivity" />
         <activity android:name=".ConfirmListing" />
         <activity android:name=".UpdateProfile" />
-        <activity android:name=".AddPaymentActivity"/>
+        <activity android:name=".AddPaymentActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
