@@ -1,8 +1,10 @@
 package com.example.plowed;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -23,15 +25,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import com.androdocs.httprequest.HttpRequest;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,7 +46,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ClientUserActivity extends AppCompatActivity {
-    private static final String API_KEY = "3949111d62c8c82567dd618909b7f86d";
     private static final String ZIP_REGEX ="^\\d{5}$";
     TextView clientName;
     TextView temperature;
@@ -55,10 +57,11 @@ public class ClientUserActivity extends AppCompatActivity {
     private static final int LOGOUT = 2;
     private static final int DELETE = 3;
     private FirebaseUser mUser;
-    private String zipCode = "53711";
+    private String zipCode;
     private LocationManager locationManager;
     private Location location;
     private boolean zipEdit;
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +72,9 @@ public class ClientUserActivity extends AppCompatActivity {
         address = (EditText) findViewById(R.id.address);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         temperature = (TextView) findViewById(R.id.temperature);
-        temperature.setText("Click Button To Update Temperature");
+        temperature.setText(R.string.temp);
         zipCodeIn = (EditText) findViewById(R.id.zipCodeIn);
+        pref = getSharedPreferences("com.example.plowed", Context.MODE_PRIVATE);
 
         zipCodeIn.addTextChangedListener(new TextWatcher() {
             @Override
@@ -92,89 +96,34 @@ public class ClientUserActivity extends AppCompatActivity {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             } else {
+                startListening();
                 location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             }
         }
         userConfig();
 
     }
-    public void startListening(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            updateLocationInfo(location);
-        }
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-            startListening();
-        }
-    }
-    public void updateLocationInfo(Location location) {
-        if (location != null) {
-            Geocoder geo = new Geocoder(this, Locale.getDefault());
-            try{
-                List<Address> address = geo.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                zipCode = address.get(0).getPostalCode();
-            }catch(Exception e){
-                Log.e("update loc info error", e.toString());
-            }
-        }
-    }
-
-    public void updateWeather(View view) {
-        if(location == null || zipEdit){
-            if (zipEdit && zipCodeIn.getText().toString().matches(ZIP_REGEX)){
-                zipCode = zipCodeIn.getText().toString();
-                new weatherTask().execute();
-            }else{
-                Toast.makeText(this, "Invalid zip.", Toast.LENGTH_LONG).show();
-            }
-        }else{
-            new weatherTask().execute();
-        }
-    }
-
-    class weatherTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        protected String doInBackground(String... args) {
-            return HttpRequest.excuteGet("https://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + "&appid=" + API_KEY +"&units=imperial");
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-
-            try {
-                JSONObject jsonObj = new JSONObject(result);
-                JSONObject main = jsonObj.getJSONObject("main");
-                String temp = main.getString("temp") ;
-                temperature.setText(temp + " Degrees F");
-
-            } catch (JSONException e) {
-                Log.e("weather error", e.toString());
-            }
-
-        }
-    }
-
     private void userConfig(){
         // may be empty
         if (mUser.getDisplayName() != null){
             clientName.setText(String.format(Locale.ENGLISH, "Welcome %s",
                     mUser.getDisplayName()));
         }else{
-            clientName.setText("Welcome!");
+            clientName.setText(R.string.welcome);
         }
 
     }
+    // On-clicks
+    public void goToMap(View view){
+        Intent toMap = new Intent(this, MapsActivity.class);
+        toMap.putExtra("location", location);
+        toMap.putExtra("zip", zipCode);
+        toMap.putExtra("manual", zipEdit);
+        startActivity(toMap);
+    }
+    public void goToConfirmationListing(View view){ startActivity(new Intent(this, ConfirmListing.class)); }
 
+    // Menu callbacks
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -202,6 +151,78 @@ public class ClientUserActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    // Location setting section
+    public void startListening(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+            if (locationManager != null){
+                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+            updateLocationInfo(location);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            startListening();
+        }
+    }
+    public void updateLocationInfo(Location location) {
+        if (location != null) {
+            Geocoder geo = new Geocoder(this, Locale.getDefault());
+            try{
+                List<Address> address = geo.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                zipCode = address.get(0).getPostalCode();
+                pref.edit().putString("zip", zipCode).apply();
+            }catch(Exception e){
+                Log.e("update loc info error", e.toString());
+            }
+        }
+    }
+    // END LOCATION
+
+    // Weather service section
+    public void updateWeather(View view) {
+        if(location == null || zipEdit){
+            if (zipEdit && zipCodeIn.getText().toString().matches(ZIP_REGEX)){
+                zipCode = zipCodeIn.getText().toString();
+                pref.edit().putString("zip", zipCode).apply();
+                new weatherTask().execute();
+            }else{
+                Toast.makeText(this, "Invalid zip.", Toast.LENGTH_LONG).show();
+            }
+        }else{
+            new weatherTask().execute();
+        }
+    }
+    // Weather class
+    class weatherTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+        protected String doInBackground(String... args) {
+            return HttpRequest.excuteGet("https://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + "&appid=" + getText(R.string.open_weather_key) +"&units=imperial");
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONObject jsonObj = new JSONObject(result);
+                JSONObject main = jsonObj.getJSONObject("main");
+                String temp = main.getString("temp") ;
+                temperature.setText(String.format("%s Degrees F", temp));
+            } catch (JSONException e) {
+                Log.e("weather error", e.toString());
+            }
+
+        }
+    }
+    // END WEATHER
+
+    // NOTIFS TODO
     /*
     public void sendNotification(View v){
         //String title = editTextTitle.getText().toString();
@@ -231,12 +252,6 @@ public class ClientUserActivity extends AppCompatActivity {
     }
      */
 
-    public void goToMap(View view){
-        startActivity(new Intent(this, MapsActivity.class));
-    }
 
-    public void goToConfirmationListing(View view){
-        startActivity(new Intent(this, ConfirmListing.class));
-    }
 
 }

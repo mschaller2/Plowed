@@ -4,6 +4,7 @@
     <string name="email">Email</string>
     <string name="login">Login</string>
     <string name="welcome_client">Welcome Client</string>
+    <string name="welcome">Welcome!</string>
     <string name="welcome_plower">Welcome Plower</string>
     <string name="background">background</string>
     <string name="title_activity_maps">ClientMapActivity</string>
@@ -13,4 +14,6 @@
     <string name="spinner_title">Year</string>
     <string name="delete">Delete Account</string>
     <string name="settings">Account Settings</string>
+    <string name="temp">Click Button To Update Temperature</string>
+    <string name="open_weather_key">3949111d62c8c82567dd618909b7f86d</string>
 </resources>
