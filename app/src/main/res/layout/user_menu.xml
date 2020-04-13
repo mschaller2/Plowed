@@ -13,11 +13,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp"/>
 
-    <WebView
-        android:id="@+id/weather"
-        android:layout_width="325dp"
-        android:layout_height="470dp"
-        android:layout_gravity="center" />
 
     <Button
         android:id="@+id/toMap"
@@ -42,5 +37,19 @@
         android:onClick="goToConfirmationListing"
         android:text="Request Plowing Service" />  <!-- For future use of the confirm page-->
 
+    <Button
+        android:id="@+id/check_Weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="updateWeather"
+        android:text="Check Weather" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Temperature is" />
 
 </LinearLayout>
