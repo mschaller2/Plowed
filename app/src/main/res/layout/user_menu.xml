@@ -8,11 +8,21 @@
         android:id="@+id/client"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_client"
-        android:textSize="30sp"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/welcome_client"
+        android:textSize="30sp" />
 
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:text="Manually Set Address" />
 
     <Button
         android:id="@+id/toMap"
@@ -23,12 +33,6 @@
         android:onClick="goToMap"
         android:text="Select Address on Map" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Manually Enter Address"
-        android:id="@+id/address"/>
     <Button
         android:id="@+id/confirm"
         android:layout_width="wrap_content"
@@ -37,19 +41,38 @@
         android:onClick="goToConfirmationListing"
         android:text="Request Plowing Service" />  <!-- For future use of the confirm page-->
 
-    <Button
-        android:id="@+id/check_Weather"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:srcCompat="@drawable/stuck" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="updateWeather"
-        android:text="Check Weather" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/check_Weather"
+            android:layout_width="221dp"
+            android:layout_height="wrap_content"
+            android:onClick="updateWeather"
+            android:text="Check Weather" />
+
+        <EditText
+            android:id="@+id/zipCodeIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Zip Code" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Temperature is" />
+        android:text="Temperature is"
+        android:textSize="30dp" />
 
 </LinearLayout>
