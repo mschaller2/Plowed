@@ -32,7 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Manually Enter Address"/>
+        android:text="Manually Enter Address"
+        android:id="@+id/address"/>
     <Button
         android:id="@+id/confirm"
         android:layout_width="wrap_content"

@@ -1,11 +1,6 @@
 package com.example.plowed;
 
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,19 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.FirebaseApiNotAvailableException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-import static com.example.plowed.App.CHANNEL_1_ID;
 
 public class ClientUserActivity extends AppCompatActivity {
     TextView clientName;
@@ -44,7 +34,7 @@ public class ClientUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.client_info);
+        setContentView(R.layout.user_menu);
         clientName = (TextView) findViewById(R.id.client);
         toMap = (Button) findViewById(R.id.toMap);
         address = (EditText) findViewById(R.id.address);
@@ -56,8 +46,13 @@ public class ClientUserActivity extends AppCompatActivity {
 
     private void userConfig(){
         // may be empty
-        clientName.setText(String.format(Locale.ENGLISH, "Welcome %s",
-                mUser.getDisplayName()));
+        if (mUser.getDisplayName() != null){
+            clientName.setText(String.format(Locale.ENGLISH, "Welcome %s",
+                    mUser.getDisplayName()));
+        }else{
+            clientName.setText("Welcome!");
+        }
+
     }
 
     @Override
