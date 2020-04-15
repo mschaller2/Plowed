@@ -17,7 +17,7 @@ public class AddPaymentActivity extends AppCompatActivity implements AdapterView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_payment);
+        setContentView(R.layout.activity_add_payment); // not sure why this is in error
 
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.yearSpinner);
