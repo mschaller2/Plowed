@@ -38,8 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="goToConfirmationListing"
-        android:text="Request Plowing Service" />  <!-- For future use of the confirm page-->
+        android:onClick="goToRequestService"
+        android:text="Request Plowing Service" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Zip Code" />
+            android:hint="Zip Code" />
     </LinearLayout>
 
     <TextView

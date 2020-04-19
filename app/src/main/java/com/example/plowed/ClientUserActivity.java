@@ -121,7 +121,7 @@ public class ClientUserActivity extends AppCompatActivity {
         toMap.putExtra("manual", zipEdit);
         startActivity(toMap);
     }
-    public void goToConfirmationListing(View view){ startActivity(new Intent(this, ConfirmListing.class)); }
+    public void goToRequestService(View view){ startActivity(new Intent(this, ConfirmListing.class)); }
 
     // Menu callbacks
     @Override

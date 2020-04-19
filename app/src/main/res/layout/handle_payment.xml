@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".HandlePayment"
     android:orientation="vertical">
     <EditText
         android:layout_width="match_parent"
@@ -55,7 +55,8 @@
         android:id="@+id/send"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:text="Pay Now"/>
+        android:text="Pay Now"
+        android:layout_gravity="center"/>
 
 
 </LinearLayout>
