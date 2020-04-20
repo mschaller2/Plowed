@@ -22,7 +22,7 @@
         android:layout_gravity="center"
         android:ems="10"
         android:inputType="textPostalAddress"
-        android:text="Manually Set Address" />
+        android:hint="Manually Set Address" />
 
     <Button
         android:id="@+id/toMap"

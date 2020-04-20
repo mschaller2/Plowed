@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HandlePayment"
-    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".HandlePayment"-->
+<!--    android:orientation="vertical">-->
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,8 +16,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:id="@+id/name"
-        android:text="kamal bunkar"/>
+        android:id="@+id/name"/>
+<!--        android:text="kamal bunkar"/>-->
 
     <EditText
         android:layout_width="match_parent"
@@ -23,8 +26,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:id="@+id/upi_id"
-        android:text="kamal.bunkar07@okaxis"/>
+        android:id="@+id/upi_id"/>
+<!--        android:text="kamal.bunkar07@okaxis"/>-->
 
     <EditText
         android:layout_width="match_parent"
@@ -34,8 +37,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/amount_et"
-        android:inputType="numberDecimal"
-        android:text="5"/>
+        android:inputType="numberDecimal"/>
+<!--        android:text="5"/>-->
 
 
     <EditText
@@ -45,18 +48,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:id="@+id/note"
-        android:text="Test UPI Payment"/>
+        android:id="@+id/note"/>
+<!--        android:text="Test UPI Payment"/>-->
 
     <Button
-        android:layout_width="100dp"
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:id="@+id/send"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:text="Pay Now"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:text="Confirm" />
 
 
 </LinearLayout>

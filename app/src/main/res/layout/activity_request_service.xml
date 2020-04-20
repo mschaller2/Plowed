@@ -4,10 +4,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/confirmListing"
+        android:id="@+id/requestService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/confirm_listing"
+        android:text="@string/request_service"
         android:layout_gravity="center"
         android:textSize="30sp"
         android:layout_marginTop="15dp"/>
@@ -24,11 +24,13 @@
         </LinearLayout>
     </ScrollView>
 
+
     <Button
         android:id="@+id/button"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirm Listing"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:onClick="goToHandlePayment"
+        android:text="Pay" />
 
 </LinearLayout>

@@ -37,7 +37,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".ConfirmListing" />
+        <activity android:name=".RequestService" />
         <activity android:name=".UpdateProfile" />
         <activity android:name=".AddPaymentActivity" />
 

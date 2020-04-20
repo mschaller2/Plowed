@@ -1,7 +1,6 @@
 package com.example.plowed;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,10 +30,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import com.androdocs.httprequest.HttpRequest;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -121,7 +118,7 @@ public class ClientUserActivity extends AppCompatActivity {
         toMap.putExtra("manual", zipEdit);
         startActivity(toMap);
     }
-    public void goToRequestService(View view){ startActivity(new Intent(this, ConfirmListing.class)); }
+    public void goToRequestService(View view){ startActivity(new Intent(this, RequestService.class)); }
 
     // Menu callbacks
     @Override
