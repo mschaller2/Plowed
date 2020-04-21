@@ -16,4 +16,5 @@
     <string name="settings">Account Settings</string>
     <string name="temp">Click Button To Update Temperature</string>
     <string name="open_weather_key">3949111d62c8c82567dd618909b7f86d</string>
+    <string name="pick_date">Pick Date</string>
 </resources>

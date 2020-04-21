@@ -1,6 +1,7 @@
 package com.example.plowed;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,4 +16,9 @@ public class RequestService extends AppCompatActivity {
     }
 
     public void goToHandlePayment(View view){ startActivity(new Intent(this, HandlePayment.class)); }
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
 }
