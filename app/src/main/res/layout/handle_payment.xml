@@ -17,17 +17,15 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/name"/>
-<!--        android:text="kamal bunkar"/>-->
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="UPI ID"
+        android:hint="UPI ID (email)"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/upi_id"/>
-<!--        android:text="kamal.bunkar07@okaxis"/>-->
 
     <EditText
         android:layout_width="match_parent"
@@ -38,7 +36,6 @@
         android:layout_marginTop="20dp"
         android:id="@+id/amount_et"
         android:inputType="numberDecimal"/>
-<!--        android:text="5"/>-->
 
 
     <EditText
@@ -49,7 +46,6 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/note"/>
-<!--        android:text="Test UPI Payment"/>-->
 
     <Button
         android:id="@+id/button"
