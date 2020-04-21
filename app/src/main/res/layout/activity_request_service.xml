@@ -24,15 +24,24 @@
 
         </LinearLayout>
     </ScrollView>
+
     <Button
+        android:id="@+id/dateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pick_date"
-        android:onClick="showDatePickerDialog" />
+        android:layout_gravity="center"/>
 
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Date Picked" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/payButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
