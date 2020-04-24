@@ -9,19 +9,11 @@
 <!--    android:orientation="vertical">-->
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/name"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="UPI ID (email)"
+        android:hint="Plower Email"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
@@ -45,14 +37,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
         android:id="@+id/note"/>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Confirm" />
-
+    <include
+        android:id="@+id/google_pay_button"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        layout="@layout/googlepay_button"
+        />
 
 </LinearLayout>
