@@ -36,10 +36,7 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
 
     public void goToHandlePayment(View view){ startActivity(new Intent(this, HandlePayment.class)); }
 
-//    public void showDatePickerDialog(View v) {
-//        DialogFragment newFragment = new DatePickerFragment();
-//        newFragment.show(getSupportFragmentManager(), "datePicker");
-//    }
+
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
