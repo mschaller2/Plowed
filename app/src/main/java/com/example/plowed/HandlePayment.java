@@ -7,7 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -28,6 +30,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,16 +45,69 @@ public class HandlePayment extends AppCompatActivity {
     private EditText amount;
     private EditText note;
     private EditText plowerEmail;
+    private boolean[] changeCheck;
 
     @SuppressLint("ResourceType")
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        changeCheck = new boolean[]{false, false, false};
         setContentView(R.layout.handle_payment);
         plowerEmail = (EditText) findViewById(R.id.upi_id);
         note = (EditText) findViewById(R.id.note);
         amount = (EditText) findViewById(R.id.amount_et);
+        TextWatcher watcher1 = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                changeCheck[0] = true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+        TextWatcher watcher2 = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                changeCheck[1] = true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+        TextWatcher watcher3 = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                changeCheck[2] = true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+        plowerEmail.addTextChangedListener(watcher1);
+        note.addTextChangedListener(watcher2);
+        amount.addTextChangedListener(watcher3);
         googlePayButton = (View) findViewById(R.id.google_pay_button);
         Wallet.WalletOptions walletOptions = new Wallet.WalletOptions.Builder().setEnvironment
                 (WalletConstants.ENVIRONMENT_TEST).build();
@@ -70,7 +127,12 @@ public class HandlePayment extends AppCompatActivity {
         googlePayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadPaymentData();
+                if (changeCheck[0] && changeCheck[1] && changeCheck[2]){
+                    loadPaymentData();
+                }else{
+                    Toast.makeText(getBaseContext(), "Entries cannot be left blank", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
