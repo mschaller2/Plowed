@@ -14,10 +14,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class RequestService extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
-    int year;
-    int month;
-    int day;
+public class RequestService extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +22,7 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
         setContentView(R.layout.activity_request_service);
 
         Button dateButton = (Button) findViewById(R.id.dateButton);
-        dateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
-            }
-        });
     }
-
-    public void goToHandlePayment(View view){ startActivity(new Intent(this, HandlePayment.class)); }
-
 
 
     @Override
@@ -48,5 +35,25 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
 
         TextView textView = (TextView) findViewById(R.id.dateText);
         textView.setText(currentDateString);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.dateButton:
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+                break;
+            case R.id.payButton:
+                startActivity(new Intent(this, HandlePayment.class));
+                break;
+            case R.id.confirmRequest:
+                sendRequestToDB();
+                break;
+        }
+    }
+
+    public void sendRequestToDB(){
+
     }
 }

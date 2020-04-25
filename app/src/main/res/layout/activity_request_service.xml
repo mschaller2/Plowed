@@ -11,27 +11,7 @@
         android:layout_gravity="center"
         android:textSize="30sp"
         android:layout_marginTop="15dp"/>
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="75dp">-->
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical">-->
-<!--            <TextView-->
-<!--                android:id="@+id/findService"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/request_service"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:textSize="30sp"-->
-<!--                android:layout_marginTop="15dp"/>-->
-
-
-<!--        </LinearLayout>-->
-<!--    </ScrollView>-->
 
     <Button
         android:id="@+id/dateButton"
@@ -46,14 +26,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Date Picked" />
+        android:text="Date Picked"
+        android:textSize="20dp"/>
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="237dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
 
     <Button
         android:id="@+id/payButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="goToHandlePayment"
         android:text="Pay" />
+    <Button
+        android:id="@+id/confirmRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Confirm Request" />
+
+
 
 </LinearLayout>
