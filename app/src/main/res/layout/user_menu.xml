@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:onClick="updateWeather"
             android:fontFamily="@font/montserrat"
+            android:backgroundTint="@android:color/white"
             android:text="Check Weather" />
 
         <EditText
@@ -98,6 +99,5 @@
         android:text=""
         android:fontFamily="@font/montserrat"
         android:textSize="27dp" />
-
 
 </LinearLayout>
