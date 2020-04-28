@@ -40,6 +40,8 @@
         <activity android:name=".RequestService" />
         <activity android:name=".UpdateProfile" />
         <activity android:name=".HandlePayment" />
+        <activity android:name=".DriverReview" />
+        <activity android:name=".Listings" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
