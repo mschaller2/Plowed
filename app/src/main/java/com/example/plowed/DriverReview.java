@@ -19,13 +19,13 @@ public class DriverReview extends AppCompatActivity {
 
         saveRating = findViewById(R.id.saveRating);
         ratingBar = findViewById(R.id.ratingBar);
-        saveRating.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String rating = "Rating is :" + ratingBar.getRating() + "stars";
-                Toast.makeText(driver_review_activity.this, rating, Toast.LENGTH_LONG).show();
-            }
-        });
+//        saveRating.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String rating = "Rating is :" + ratingBar.getRating() + "stars";
+//                Toast.makeText(DriverReview.this, rating, Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
     public void getRecentDrivers(){

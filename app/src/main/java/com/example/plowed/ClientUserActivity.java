@@ -123,6 +123,8 @@ public class ClientUserActivity extends AppCompatActivity {
     }
     public void goToRequestService(View view){ startActivity(new Intent(this, RequestService.class)); }
 
+    public void goToDriver(View view){ startActivity(new Intent(this, DriverReview.class)); } // This is just for testing to see driver-related stuff
+
     // Menu callbacks
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
