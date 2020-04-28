@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_dark"
     android:orientation="vertical">
 
     <TextView
@@ -14,6 +15,7 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/welcome_client"
+        android:textColor="@android:color/white"
         android:textSize="30sp" />
 
 
@@ -23,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ems="10"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/montserrat"
         android:hint="Manually Set Address"
         android:inputType="textPostalAddress" />
@@ -34,6 +37,8 @@
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:onClick="goToMap"
+        android:backgroundTint="#85bfd4"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/montserrat"
         android:text="Select Address on Map" />
 
@@ -42,7 +47,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@android:color/white"
         android:onClick="goToRequestService"
+        android:backgroundTint="#85bfd4"
         android:fontFamily="@font/montserrat"
         android:text="Request Plowing Service" />
 
@@ -62,8 +69,9 @@
             android:layout_width="221dp"
             android:layout_height="wrap_content"
             android:onClick="updateWeather"
+            android:textColor="@android:color/white"
             android:fontFamily="@font/montserrat"
-            android:backgroundTint="@android:color/white"
+            android:backgroundTint="#85bfd4"
             android:text="Check Weather" />
 
         <EditText
@@ -72,6 +80,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="@font/montserrat"
+            android:textColor="@android:color/white"
             android:hint="Zip Code"
             android:inputType="textPersonName" />
     </LinearLayout>
@@ -82,6 +91,7 @@
         android:layout_height="wrap_content"
         android:text="Enter Zip Code To Update Weather"
         android:fontFamily="@font/montserrat"
+        android:textColor="@android:color/white"
         android:textSize="27dp" />
 
     <TextView
