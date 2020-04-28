@@ -28,6 +28,7 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
     private String userName;
     private String userPhone;
     private String userEmail;
+    private String userPickedDate;
 
     Button dateButton;
     Button payButton;
@@ -53,6 +54,7 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        userPickedDate = currentDateString;
 
         TextView textView = (TextView) findViewById(R.id.dateText);
         Button dateButton = (Button) findViewById(R.id.dateButton);
@@ -79,12 +81,12 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
                 break;
             case R.id.confirmRequest:
                 setRequestToDB();
-                sendRequestToDB(epochTimestamp, userName, userPhone, userEmail);
+                sendRequestToDB(epochTimestamp, userName, userPhone, userEmail, userPickedDate);
                 break;
         }
     }
 
-    public void sendRequestToDB(Long timestamp, String userName, String userPhone, String userEmail){
+    public void sendRequestToDB(Long timestamp, String userName, String userPhone, String userEmail, String userPickedDate){
 
 //        Database db = new Database; // creating a new instance of a database object
 //
@@ -92,6 +94,11 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
 //        db.send(timestamp, userName);
 //        db.send(timestamp, userPhone);
 //        db.send(timestamp, userEmail);
+
+        if(userPickedDate == ""){ // If the user did not specify a date, use current date
+            userPickedDate = date;
+        }
+//        db.send(timestamp, userPickedDate);
 
     }
 

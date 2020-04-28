@@ -47,22 +47,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/white"
         android:onClick="goToRequestService"
         android:backgroundTint="#85bfd4"
         android:fontFamily="@font/montserrat"
         android:text="Request Plowing Service" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:srcCompat="@drawable/stuck" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
         <Button
             android:id="@+id/check_Weather"
@@ -89,6 +86,7 @@
         android:id="@+id/current_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Enter Zip Code To Update Weather"
         android:fontFamily="@font/montserrat"
         android:textColor="@android:color/white"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,7 +14,15 @@
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="15dp"/>
 
-
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/montserrat"
+        android:layout_marginTop="20dp"
+        android:text="Pick Date Below"
+        android:textSize="20dp"/>
     <Button
         android:id="@+id/dateButton"
         android:layout_width="wrap_content"
@@ -22,15 +31,12 @@
         android:fontFamily="@font/montserrat"
         android:layout_gravity="center"/>
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/stuck" />
 
-    <TextView
-        android:id="@+id/dateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/montserrat"
-        android:text="Date Picked"
-        android:textSize="20dp"/>
 
 <!--    <ScrollView-->
 <!--        android:layout_width="match_parent"-->
@@ -51,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/montserrat"
-        android:text="Pay" />
+        android:text="Payment Info" />
     <Button
         android:id="@+id/confirmRequest"
         android:layout_width="wrap_content"
