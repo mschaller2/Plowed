@@ -12,4 +12,10 @@ public class Listings extends AppCompatActivity {
         setContentView(R.layout.listings_activity);
     }
 
+    // Need to dynamically update the listings on the activity
+    // fetch from db
+    public void fetchListingsFromDB(){
+
+    }
+
 }
