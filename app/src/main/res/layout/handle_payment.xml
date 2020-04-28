@@ -16,6 +16,7 @@
         android:hint="Plower Email"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:fontFamily="@font/montserrat"
         android:layout_marginTop="20dp"
         android:id="@+id/upi_id"/>
 
@@ -25,6 +26,7 @@
         android:hint="Amount"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:fontFamily="@font/montserrat"
         android:layout_marginTop="20dp"
         android:id="@+id/amount_et"
         android:inputType="numberDecimal"/>
@@ -36,6 +38,7 @@
         android:hint="Note"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:fontFamily="@font/montserrat"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"
         android:id="@+id/note"/>

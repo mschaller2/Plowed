@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/client"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/montserrat"
         android:text="@string/welcome_client"
         android:textSize="30sp" />
 
@@ -21,8 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ems="10"
-        android:inputType="textPostalAddress"
-        android:hint="Manually Set Address" />
+        android:fontFamily="@font/montserrat"
+        android:hint="Manually Set Address"
+        android:inputType="textPostalAddress" />
 
     <Button
         android:id="@+id/toMap"
@@ -31,6 +34,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:onClick="goToMap"
+        android:fontFamily="@font/montserrat"
         android:text="Select Address on Map" />
 
     <Button
@@ -39,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="goToRequestService"
+        android:fontFamily="@font/montserrat"
         android:text="Request Plowing Service" />
 
     <ImageView
@@ -57,6 +62,7 @@
             android:layout_width="221dp"
             android:layout_height="wrap_content"
             android:onClick="updateWeather"
+            android:fontFamily="@font/montserrat"
             android:text="Check Weather" />
 
         <EditText
@@ -64,35 +70,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Zip Code" />
+            android:fontFamily="@font/montserrat"
+            android:hint="Zip Code"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/current_Weather"
+        android:id="@+id/current_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Weather"
-        android:textSize="30dp" />
+        android:text="Enter Zip Code To Update Weather"
+        android:fontFamily="@font/montserrat"
+        android:textSize="27dp" />
 
     <TextView
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="30dp" />
+        android:fontFamily="@font/montserrat"
+        android:textSize="27dp" />
 
     <TextView
         android:id="@+id/feels_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="30dp" />
+        android:fontFamily="@font/montserrat"
+        android:textSize="27dp" />
 
-    <TextView
-        android:id="@+id/conditions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="30dp" />
+
 </LinearLayout>

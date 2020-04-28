@@ -46,8 +46,8 @@ public class ClientUserActivity extends AppCompatActivity {
     private static final String ZIP_REGEX ="^\\d{5}$";
     TextView clientName;
     TextView temperature;
-    TextView conditions;
     TextView feels_like;
+    TextView current_weather;
     Button toMap;
     EditText address;
     EditText zipCodeIn;
@@ -71,9 +71,9 @@ public class ClientUserActivity extends AppCompatActivity {
         address = (EditText) findViewById(R.id.address);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         temperature = (TextView) findViewById(R.id.temperature);
-        conditions = (TextView) findViewById(R.id.conditions);
         feels_like = (TextView) findViewById(R.id.feels_like);
         zipCodeIn = (EditText) findViewById(R.id.zipCodeIn);
+        current_weather= (TextView) findViewById(R.id.current_weather);
         pref = getSharedPreferences("com.example.plowed", Context.MODE_PRIVATE);
 
         zipCodeIn.addTextChangedListener(new TextWatcher() {
@@ -217,8 +217,8 @@ public class ClientUserActivity extends AppCompatActivity {
                 String feel = main.getString("feels_like");
                 feels_like.setText(String.format("Feels Like: %s\u00B0 F", feel));
                 main = jsonObj.getJSONArray("weather").getJSONObject(0);
-                String current_weather = main.getString("description") ;
-                conditions.setText(String.format(current_weather));
+                String the_weather = main.getString("description") ;
+                current_weather.setText(String.format("Current Weather: %s", the_weather));
             } catch (JSONException e) {
                 Log.e("weather error", e.toString());
             }
