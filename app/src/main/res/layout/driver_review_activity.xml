@@ -4,23 +4,39 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/listingTitle"
+        android:id="@+id/reviewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Listings"
+        android:text="Driver Review"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
         android:textSize="30dp"/>
 
-    <TextView
-        android:id="@+id/listings"
+    <RatingBar
+        android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:saveEnabled="true" />
+
+    <EditText
+        android:id="@+id/writtenReview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="20dp"
-        android:text="Your assignments..."
+        android:hint="How was your experience..."
         android:textSize="20dp"/>
+    <Button
+        android:id="@+id/saveRating"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:text="Save Rating"/>
 
 </LinearLayout>
