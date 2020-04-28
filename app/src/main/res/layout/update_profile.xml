@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Display Name" />
+        android:hint="Display Name" />
 
     <EditText
         android:id="@+id/email"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="@string/email" />
+        android:hint="@string/email" />
 
     <EditText
         android:id="@+id/phone"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="phone"
-        android:text="@string/fui_invalid_phone_number" />
+        android:hint="@string/fui_invalid_phone_number" />
 
     <LinearLayout
         android:layout_width="match_parent"

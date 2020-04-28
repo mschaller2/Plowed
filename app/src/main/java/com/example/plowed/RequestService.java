@@ -29,12 +29,20 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
     private String userPhone;
     private String userEmail;
 
+    Button dateButton;
+    Button payButton;
+    Button confirmRequest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_service);
-
-        Button dateButton = (Button) findViewById(R.id.dateButton);
+        dateButton = (Button) findViewById(R.id.dateButton);
+        dateButton.setOnClickListener(this);
+        payButton = (Button) findViewById(R.id.payButton);
+        payButton.setOnClickListener(this);
+        confirmRequest = (Button) findViewById(R.id.confirmRequest);
+        confirmRequest.setOnClickListener(this);
     }
 
 
