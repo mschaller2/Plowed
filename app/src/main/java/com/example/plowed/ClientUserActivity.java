@@ -49,6 +49,8 @@ public class ClientUserActivity extends AppCompatActivity {
     TextView feels_like;
     TextView current_weather;
     Button toMap;
+    Button goToDriver;
+    Button rateDriverButton;
     EditText address;
     EditText zipCodeIn;
 
@@ -75,6 +77,8 @@ public class ClientUserActivity extends AppCompatActivity {
         zipCodeIn = (EditText) findViewById(R.id.zipCodeIn);
         current_weather= (TextView) findViewById(R.id.current_weather);
         pref = getSharedPreferences("com.example.plowed", Context.MODE_PRIVATE);
+        goToDriver = (Button) findViewById(R.id.goToDriver);
+        rateDriverButton = (Button) findViewById(R.id.rateDriverButton);
 
         zipCodeIn.addTextChangedListener(new TextWatcher() {
             @Override
@@ -123,7 +127,9 @@ public class ClientUserActivity extends AppCompatActivity {
     }
     public void goToRequestService(View view){ startActivity(new Intent(this, RequestService.class)); }
 
-    public void goToDriver(View view){ startActivity(new Intent(this, DriverReview.class)); } // This is just for testing to see driver-related stuff
+    public void goToDriverListings(View view){ startActivity(new Intent(this, Listings.class)); } // This is just for testing to see driver-related stuff
+
+    public void goToDriverRating(View view){ startActivity(new Intent(this, DriverReview.class)); }
 
     // Menu callbacks
     @Override

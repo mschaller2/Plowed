@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/welcome_client"
         android:textColor="@android:color/white"
@@ -35,7 +35,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
         android:onClick="goToMap"
         android:backgroundTint="#85bfd4"
         android:textColor="@android:color/white"
@@ -53,6 +52,17 @@
         android:backgroundTint="#85bfd4"
         android:fontFamily="@font/montserrat"
         android:text="Request Plowing Service" />
+    <Button
+        android:id="@+id/rateDriverButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#85bfd4"
+        android:onClick="goToDriverRating"
+        android:layout_gravity="center"
+        android:text="Rate Driver" />
 
 
     <LinearLayout
@@ -113,8 +123,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
-        android:onClick="goToDriver"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#85bfd4"
+        android:onClick="goToDriverListings"
         android:layout_gravity="center"
-        android:text="Driver Test Button" />
+        android:text="Temp Go To Driver Listings" />
 
 </LinearLayout>
