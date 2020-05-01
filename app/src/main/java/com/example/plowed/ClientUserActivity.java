@@ -19,8 +19,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +55,8 @@ public class ClientUserActivity extends AppCompatActivity {
     Button rateDriverButton;
     EditText address;
     EditText zipCodeIn;
+//    LinearLayout mainLayout;
+Button checkWeather;
 
     private NotificationManagerCompat notificationManager;
     private static final int LOGOUT = 2;
@@ -79,6 +83,12 @@ public class ClientUserActivity extends AppCompatActivity {
         pref = getSharedPreferences("com.example.plowed", Context.MODE_PRIVATE);
         goToDriver = (Button) findViewById(R.id.goToDriver);
         rateDriverButton = (Button) findViewById(R.id.rateDriverButton);
+//        mainLayout = (LinearLayout)findViewById(R.id.linearLayoutMain);
+//
+//        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+        checkWeather = (Button) findViewById(R.id.check_Weather);
+//        zipCodeIn.requestFocus();
 
         zipCodeIn.addTextChangedListener(new TextWatcher() {
             @Override
@@ -105,8 +115,19 @@ public class ClientUserActivity extends AppCompatActivity {
             }
         }
         userConfig();
-
     }
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.check_Weather:
+//                hideKeybaord(v);
+//                break;
+//        }
+//    }
+//    private void hideKeybaord(View v) {
+//        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+//        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
+//    }
+
     private void userConfig(){
         // may be empty
         if (mUser.getDisplayName() != null){
@@ -193,6 +214,8 @@ public class ClientUserActivity extends AppCompatActivity {
 
     // Weather service section
     public void updateWeather(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getApplicationWindowToken(),0);
         if(location == null || zipEdit){
             if (zipEdit && zipCodeIn.getText().toString().matches(ZIP_REGEX)){
                 zipCode = zipCodeIn.getText().toString();

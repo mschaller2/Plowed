@@ -32,9 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ClientUserActivity">
+        <activity android:name=".ClientUserActivity" android:windowSoftInputMode = "stateAlwaysVisible">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+                <category android:name = "android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".RequestService" />

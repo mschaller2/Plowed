@@ -6,127 +6,158 @@
     android:background="@android:color/holo_blue_dark"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/client"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/welcome_client"
-        android:textColor="@android:color/white"
-        android:textSize="30sp" />
 
-
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/montserrat"
-        android:hint="Manually Set Address"
-        android:inputType="textPostalAddress" />
-
-    <Button
-        android:id="@+id/toMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="goToMap"
-        android:backgroundTint="#85bfd4"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/montserrat"
-        android:text="Select Address on Map" />
-
-    <Button
-        android:id="@+id/confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:textColor="@android:color/white"
-        android:onClick="goToRequestService"
-        android:backgroundTint="#85bfd4"
-        android:fontFamily="@font/montserrat"
-        android:text="Request Plowing Service" />
-    <Button
-        android:id="@+id/rateDriverButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@android:color/white"
-        android:backgroundTint="#85bfd4"
-        android:onClick="goToDriverRating"
-        android:layout_gravity="center"
-        android:text="Rate Driver" />
-
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/check_Weather"
-            android:layout_width="221dp"
-            android:layout_height="wrap_content"
-            android:onClick="updateWeather"
-            android:textColor="@android:color/white"
-            android:fontFamily="@font/montserrat"
-            android:backgroundTint="#85bfd4"
-            android:text="Check Weather" />
-
-        <EditText
-            android:id="@+id/zipCodeIn"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@android:color/white"
-            android:hint="Zip Code"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/current_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Enter Zip Code To Update Weather"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@android:color/white"
-        android:textSize="27dp" />
+            <TextView
+                android:id="@+id/client"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/welcome_client"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:fontFamily="@font/montserrat"
-        android:textSize="27dp" />
 
-    <TextView
-        android:id="@+id/feels_like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:fontFamily="@font/montserrat"
-        android:textSize="27dp" />
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:fontFamily="@font/montserrat"
+                android:hint="Manually Set Address"
+                android:inputType="textPostalAddress"
+                android:textColor="@android:color/white" />
 
-    <Button
-        android:id="@+id/goToDriver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@android:color/white"
-        android:backgroundTint="#85bfd4"
-        android:onClick="goToDriverListings"
-        android:layout_gravity="center"
-        android:text="Temp Go To Driver Listings" />
+            <Button
+                android:id="@+id/toMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#85bfd4"
+                android:fontFamily="@font/montserrat"
+                android:onClick="goToMap"
+                android:text="Select Address on Map"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#85bfd4"
+                android:fontFamily="@font/montserrat"
+                android:onClick="goToRequestService"
+                android:text="Request Plowing Service"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/rateDriverButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#85bfd4"
+                android:fontFamily="@font/montserrat"
+                android:onClick="goToDriverRating"
+                android:text="Rate Driver"
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/snowplow" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayoutMain">
+
+                <Button
+                    android:id="@+id/check_Weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#85bfd4"
+                    android:fontFamily="@font/montserrat"
+                    android:onClick="updateWeather"
+                    android:text="Check Weather"
+                    android:textColor="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/zipCodeIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="Zip Code"
+                    android:inputType="textPersonName"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/current_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Enter Zip Code To Update Weather"
+                android:textColor="@android:color/white"
+                android:textSize="27dp" />
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/montserrat"
+                android:text=""
+                android:textSize="27dp" />
+
+            <TextView
+                android:id="@+id/feels_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/montserrat"
+                android:text=""
+                android:textSize="27dp" />
+
+            <Button
+                android:id="@+id/goToDriver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="#85bfd4"
+                android:fontFamily="@font/montserrat"
+                android:onClick="goToDriverListings"
+                android:text="Temp Go To Driver Listings"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
