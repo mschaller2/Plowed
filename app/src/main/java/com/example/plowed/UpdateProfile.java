@@ -48,7 +48,6 @@ public class UpdateProfile extends AppCompatActivity {
     private Button reset;
     private EditText name;
     private EditText email;
-    private EditText phone;
 
 
 
@@ -63,8 +62,7 @@ public class UpdateProfile extends AppCompatActivity {
         updateProfile = (Button) findViewById(R.id.updateProfile);
         drive = (Button) findViewById(R.id.drive);
         reset = (Button) findViewById(R.id.reset);
-        phone = (EditText) findViewById(R.id.phone);
-        name = (EditText) findViewById(R.id.name);
+        name = (EditText) findViewById(R.id.displayName);
         email = (EditText) findViewById(R.id.email);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         showProfilePicture();
@@ -151,15 +149,13 @@ public class UpdateProfile extends AppCompatActivity {
                 .setDisplayName(name.getText().toString())
                 .build();
         // email
-        mUser.updateEmail(email.toString());
+        mUser.updateProfile(profileChangeRequest);
+        mUser.updateEmail(email.getText().toString());
         mUser.sendEmailVerification();
-        // phone tbd
-        //mUser.updatePhoneNumber()
     }
     public void requestToDrive(View view){
         Intent paperwork = new Intent(Intent.ACTION_VIEW, Uri.parse(VERIFY));
         startActivity(paperwork);
-
     }
 
     public void sendPasswordReset(View view) {
@@ -171,7 +167,6 @@ public class UpdateProfile extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Update email first", Toast.LENGTH_LONG).show();
         }
-
         // [END send_password_reset]
     }
 

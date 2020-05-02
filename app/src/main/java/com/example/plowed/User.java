@@ -1,18 +1,19 @@
 package com.example.plowed;
 
 public class User {
-    private int id;
     private String name;
     private String email;
     private String phone;
-    private boolean driver;
-
-    public int getId() {
-        return id;
+    private String address;
+    public User(){}
+    public User(String name, String email, String phone, String address){
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
     }
-    public void setId(int id){
-        this.id = id;
-    }
+    public String getAddress(){ return this.address; }
+    public void setAddress(String address){ this.address = address; }
     public String getName(){
         return this.name;
     }
@@ -30,12 +31,6 @@ public class User {
     }
     public void setPhone(String phone){
         this.phone = phone;
-    }
-    public boolean getDriver(){
-        return driver;
-    }
-    public void setDriver(boolean driver){
-        this.driver = driver;
     }
 
 }

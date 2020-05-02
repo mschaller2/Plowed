@@ -38,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -72,7 +73,9 @@ Button checkWeather;
     private LocationManager locationManager;
     private Location location;
     private boolean zipEdit;
+    private boolean addressEdit;
     private SharedPreferences pref;
+    private Intent ratings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +109,22 @@ Button checkWeather;
             }
             @Override
             public void afterTextChanged(Editable s) {
+            }
+        });
+        address.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // missing address input validation
+                addressEdit = true;
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -143,15 +162,25 @@ Button checkWeather;
             test.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot item : dataSnapshot.getChildren()){
-                        if (item.getValue().toString().equals(mUser.getDisplayName())){
-                            goToDriver.setVisibility(View.VISIBLE);
-                        }else{
-                            goToDriver.setVisibility(View.INVISIBLE);
+                    for (DataSnapshot drivers : dataSnapshot.getChildren()){
+                        for (DataSnapshot driver : drivers.getChildren()){
+                            if (driver.getValue().toString().equals(mUser.getDisplayName())){
+                                goToDriver.setVisibility(View.VISIBLE);
+                                if (driver.getKey().equals("Ratings")){
+                                    ratings = new Intent(getApplicationContext(), Listings.class);
+                                    ArrayList<String> ratingValues = new ArrayList<>();
+                                    for (DataSnapshot rating : driver.getChildren()){
+                                        ratingValues.add(rating.getValue().toString());
+                                    }
+                                    ratings.putExtra("ratings",ratings);
+                                }
+                            }else{
+                                goToDriver.setVisibility(View.INVISIBLE);
+                            }
                         }
+
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -171,9 +200,25 @@ Button checkWeather;
         toMap.putExtra("manual", zipEdit);
         startActivity(toMap);
     }
-    public void goToRequestService(View view){ startActivity(new Intent(this, RequestService.class)); }
+    public void goToRequestService(View view){
+        if (addressEdit){
+            Intent intent = new Intent(this, RequestService.class);
+            intent.putExtra("address", address.getText().toString());
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "Address cannot be blank", Toast.LENGTH_LONG).show();
+        }
 
-    public void goToDriverListings(View view){ startActivity(new Intent(this, Listings.class)); } // This is just for testing to see driver-related stuff
+    }
+
+    public void goToDriverListings(View view){
+        if (ratings == null){
+            startActivity(new Intent(this, Listings.class));
+        }else{
+            startActivity(ratings);
+        }
+
+    }
 
     public void goToDriverRating(View view){ startActivity(new Intent(this, DriverReview.class)); }
 

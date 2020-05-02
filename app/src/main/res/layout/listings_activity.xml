@@ -8,19 +8,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Listings"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat"
-        android:textSize="30dp"/>
+        android:text="Available Plowing Requests"
+        android:textSize="30dp" />
 
     <TextView
         android:id="@+id/listings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/montserrat"
         android:layout_marginTop="20dp"
-        android:text="Your assignments..."
-        android:textSize="20dp"/>
+        android:fontFamily="@font/montserrat"
+        android:textSize="20dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/db_plowings"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

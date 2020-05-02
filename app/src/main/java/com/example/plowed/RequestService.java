@@ -11,32 +11,34 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class RequestService extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, View.OnClickListener{
 
     private FirebaseUser mUser;
-    private Long epochTimestamp;
-    private Date currentTime;
-    private String date;
-    private String userName;
-    private String userPhone;
-    private String userEmail;
-    private String userPickedDate;
 
     Button dateButton;
     Button payButton;
     Button confirmRequest;
+    private String userPickedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
         setContentView(R.layout.activity_request_service);
         dateButton = (Button) findViewById(R.id.dateButton);
         dateButton.setOnClickListener(this);
@@ -80,46 +82,15 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
                 startActivity(new Intent(this, HandlePayment.class));
                 break;
             case R.id.confirmRequest:
-                setRequestToDB();
-                sendRequestToDB(epochTimestamp, userName, userPhone, userEmail, userPickedDate);
+                sendRequestToDB();
                 break;
         }
     }
-
-    public void sendRequestToDB(Long timestamp, String userName, String userPhone, String userEmail, String userPickedDate){
-
-//        Database db = new Database; // creating a new instance of a database object
-//
-//        //sending a key value pair
-//        db.send(timestamp, userName);
-//        db.send(timestamp, userPhone);
-//        db.send(timestamp, userEmail);
-
-        if(userPickedDate == ""){ // If the user did not specify a date, use current date
-            userPickedDate = date;
-        }
-//        db.send(timestamp, userPickedDate);
-
-    }
-
     // This function is called in the on Click function. When the confirm request button is pressed
     // all of the necessary information should be sent to the DB
-    public void setRequestToDB(){
-        Long tsLong = System.currentTimeMillis()/1000;
-        epochTimestamp = tsLong; // Unique identifier
-
-        //get timestamp
-        currentTime = Calendar.getInstance().getTime();
-        date = new SimpleDateFormat("dd-MMM-YYYY", Locale.getDefault()).format(new Date());
-
-        //get users name
-        userName = mUser.getDisplayName();
-        //users contact info
-        userPhone = mUser.getPhoneNumber();
-        //get address
-        userEmail = mUser.getEmail();
-        //get payment info?
-
-
+    private void sendRequestToDB(){
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("assignments");
+        User request = new User(mUser.getDisplayName(), mUser.getEmail(), mUser.getPhoneNumber(), getIntent().getStringExtra("address"));
+        db.child(mUser.getUid()).setValue(request);
     }
 }

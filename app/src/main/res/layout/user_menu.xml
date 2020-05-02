@@ -36,7 +36,7 @@
                 android:layout_gravity="center"
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
-                android:hint="Manually Set Address"
+                android:hint="Input Service Address"
                 android:inputType="textPostalAddress"
                 android:textColor="@android:color/white" />
 
@@ -48,7 +48,7 @@
                 android:backgroundTint="#85bfd4"
                 android:fontFamily="@font/montserrat"
                 android:onClick="goToMap"
-                android:text="Select Address on Map"
+                android:text="Check Map"
                 android:textColor="@android:color/white" />
 
             <Button
