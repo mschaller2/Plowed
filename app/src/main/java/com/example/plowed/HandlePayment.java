@@ -265,7 +265,7 @@ public class HandlePayment extends AppCompatActivity {
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                startActivity(new Intent(getApplicationContext(), ClientUserActivity.class));
+                                startActivity(new Intent(getApplicationContext(), RequestService.class));
                             }
                         })
                         .create()

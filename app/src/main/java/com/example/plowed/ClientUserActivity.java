@@ -1,6 +1,8 @@
 package com.example.plowed;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +24,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -45,11 +45,14 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static com.example.plowed.App.CHANNEL_1_ID;
 
 public class ClientUserActivity extends AppCompatActivity {
     private static final String ZIP_REGEX ="^\\d{5}$";
@@ -59,11 +62,9 @@ public class ClientUserActivity extends AppCompatActivity {
     TextView current_weather;
     Button toMap;
     Button goToDriver;
-    Button rateDriverButton;
     EditText address;
     EditText zipCodeIn;
-//    LinearLayout mainLayout;
-Button checkWeather;
+    Button checkWeather;
 
     private NotificationManagerCompat notificationManager;
     private static final int LOGOUT = 2;
@@ -91,13 +92,8 @@ Button checkWeather;
         current_weather= (TextView) findViewById(R.id.current_weather);
         pref = getSharedPreferences("com.example.plowed", Context.MODE_PRIVATE);
         goToDriver = (Button) findViewById(R.id.goToDriver);
-        rateDriverButton = (Button) findViewById(R.id.rateDriverButton);
-//        mainLayout = (LinearLayout)findViewById(R.id.linearLayoutMain);
-//
-//        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+        notificationManager = NotificationManagerCompat.from(this);
         checkWeather = (Button) findViewById(R.id.check_Weather);
-//        zipCodeIn.requestFocus();
 
         zipCodeIn.addTextChangedListener(new TextWatcher() {
             @Override
@@ -141,18 +137,35 @@ Button checkWeather;
         }
         userConfig();
     }
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.check_Weather:
-//                hideKeybaord(v);
-//                break;
-//        }
-//    }
-//    private void hideKeybaord(View v) {
-//        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-//        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
-//    }
+    private void listenForListings(){
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("assignments");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) sendNotification();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    public void sendNotification(){
+        Intent activityIntent = new Intent(this, Listings.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("Plowing Request Listed")
+                .setContentText("Tap to review new listing!")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setContentIntent(contentIntent)
+                .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
+                .build();
+        notificationManager.notify(1, notification);
+    }
     private void userConfig(){
         // may be empty
         if (mUser.getDisplayName() != null){
@@ -162,25 +175,45 @@ Button checkWeather;
             test.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot driver : dataSnapshot.getChildren()){
+                        if (driver.getKey().equals(mUser.getDisplayName())) {
+                            goToDriver.setVisibility(View.VISIBLE);
+                            listenForListings();
+                            for (DataSnapshot ratingsList: driver.getChildren()){
+                                ArrayList<Integer> ratingValues = new ArrayList<>();
+                                ratings = new Intent(getApplicationContext(), Listings.class);
+                                for (DataSnapshot rating : ratingsList.getChildren()){
+                                    ratingValues.add(Integer.parseInt(rating.getValue().toString()));
+                                }
+                                ratings.putExtra("ratings", ratingValues);
+
+                            }
+                        }else{
+                            goToDriver.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                }
+                    /*
                     for (DataSnapshot drivers : dataSnapshot.getChildren()){
                         for (DataSnapshot driver : drivers.getChildren()){
-                            if (driver.getValue().toString().equals(mUser.getDisplayName())){
-                                goToDriver.setVisibility(View.VISIBLE);
-                                if (driver.getKey().equals("Ratings")){
-                                    ratings = new Intent(getApplicationContext(), Listings.class);
-                                    ArrayList<String> ratingValues = new ArrayList<>();
-                                    for (DataSnapshot rating : driver.getChildren()){
-                                        ratingValues.add(rating.getValue().toString());
-                                    }
-                                    ratings.putExtra("ratings",ratings);
+                            if (driver.getKey().equals("Ratings")){
+                                ArrayList<Integer> ratingValues = new ArrayList<>();
+                                ratings = new Intent(getApplicationContext(), Listings.class);
+                                for (DataSnapshot rating : driver.getChildren()){
+                                    ratingValues.add(Integer.parseInt(rating.getValue().toString()));
                                 }
+                                ratings.putExtra("ratings", ratingValues);
                             }else{
-                                goToDriver.setVisibility(View.INVISIBLE);
+                                if (driver.getValue().toString().equals(mUser.getDisplayName())){
+                                    goToDriver.setVisibility(View.VISIBLE);
+                                }else{
+                                    goToDriver.setVisibility(View.INVISIBLE);
+                                }
                             }
                         }
 
                     }
-                }
+                     */
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -219,8 +252,6 @@ Button checkWeather;
         }
 
     }
-
-    public void goToDriverRating(View view){ startActivity(new Intent(this, DriverReview.class)); }
 
     // Menu callbacks
     @Override
@@ -326,36 +357,6 @@ Button checkWeather;
         }
     }
     // END WEATHER
-
-    // NOTIFS TODO
-    /*
-    public void sendNotification(View v){
-        //String title = editTextTitle.getText().toString();
-        //String message = editTextMessage.getText().toString();
-
-        Intent activityIntent = new Intent(this, ClientUserActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntent, 0);
-
-        Intent broadcastIntent = new Intent(this, NotificationReceiver.class);
-        //broadcastIntent.putExtra("toastMessage", message);
-        PendingIntent actionIntent = PendingIntent.getBroadcast(this, 0, broadcastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.ic_chat_black_24dp)
-                //.setContentTitle(title)
-                //.setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setColor(Color.BLUE)
-                .setContentIntent(contentIntent)
-                .setAutoCancel(true)
-                .setOnlyAlertOnce(true)
-                .addAction(R.mipmap.ic_launcher, "Toast", actionIntent)
-                .build();
-
-        notificationManager.notify(1, notification);
-    }
-     */
 
 
 

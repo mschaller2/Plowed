@@ -1,7 +1,11 @@
 package com.example.plowed;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,13 +28,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.ListIterator;
 import java.util.Locale;
+import java.util.Set;
+
+import static com.example.plowed.App.CHANNEL_1_ID;
 
 public class Listings extends AppCompatActivity {
     private FirebaseUser mUser;
     private TextView welcome;
-
+    private NotificationManagerCompat notificationManager;
     private RecyclerView listings;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
@@ -42,6 +55,7 @@ public class Listings extends AppCompatActivity {
         welcome = (TextView) findViewById(R.id.listings);
         listings = (RecyclerView) findViewById(R.id.db_plowings);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
+        notificationManager = NotificationManagerCompat.from(this);
         userConfig();
         fetchListingsFromDB();
 
@@ -71,20 +85,27 @@ public class Listings extends AppCompatActivity {
 
             }
         });
-
     }
-
     //Using this function from the user menu to dynamically adjust the welcome text
     private void userConfig(){
         // may be empty
         if (mUser.getDisplayName() != null){
-            Log.i("ratings", getIntent().getExtras().toString());
+            int ratingTotal = 0;
             if (getIntent().getParcelableArrayListExtra("ratings") != null){
-                Log.i("ratings", getIntent().getParcelableArrayListExtra("ratings").toString());
+               Object[] ratings = getIntent().getParcelableArrayListExtra("ratings").toArray();
+                for (Object rating : ratings){
+                    ratingTotal += (Integer.parseInt(rating.toString()));
+                }
+                double ratingAverage = (double) ratingTotal / ratings.length;
+                DecimalFormat df = new DecimalFormat("#.##");
+                welcome.setText(String.format(Locale.ENGLISH, "Listings for: %s\n" +
+                                "Average Rating: %s\nTap on a listing for options\n",
+                        mUser.getDisplayName(), df.format(ratingAverage)));
+            }else{
+                welcome.setText(String.format(Locale.ENGLISH, "Listings for: %s\nTap on a " +
+                                "listing for options",
+                        mUser.getDisplayName()));
             }
-            welcome.setText(String.format(Locale.ENGLISH, "Listings for: %s\nTap on a " +
-                            "listing for options",
-                    mUser.getDisplayName()));
         }else{
             welcome.setText(R.string.welcome);
         }
@@ -113,9 +134,12 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         return vh;
     }
 
+    // Assumes only one request/user which is reasonable but has edges
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, final int position) {
         // fiddle with this
+        final DatabaseReference db = FirebaseDatabase.getInstance().
+                getReference(String.format("assignments/%s", mDataset.get(position).get(3)));
         holder.textView.setText(String.format("\nEmail: %s\nAddress: %s\nClient: %s",
                 mDataset.get(position).get(1), mDataset.get(position).get(0),
                     mDataset.get(position).get(2)));
@@ -132,6 +156,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 test.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        db.removeValue();
                         dialog.dismiss();
                     }
                 });

@@ -40,7 +40,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }else{
             Log.e("onCreate MapsActivity", "mapFragment null");
         }
-
     }
     public void updateLocationInfo(GoogleMap mMap){
         Location location;

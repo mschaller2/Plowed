@@ -37,19 +37,31 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/montserrat"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:hint="How was your experience..."
-        android:inputType="text"/>
-    <Button
-        android:id="@+id/saveRating"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:hint="Driver Name"
+        android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#85bfd4"
-        android:textColor="@android:color/white"
-        android:text="Save Rating"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/saveRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:backgroundTint="#85bfd4"
+            android:text="Save Rating"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/homeButton"
+            android:backgroundTint="#85bfd4"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Return Home" />
+    </LinearLayout>
 
 </LinearLayout>

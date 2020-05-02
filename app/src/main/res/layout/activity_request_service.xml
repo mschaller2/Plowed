@@ -16,6 +16,40 @@
         android:textColor="@android:color/white"
         android:textSize="30sp" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:srcCompat="@drawable/stuck" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.33"
+            android:backgroundTint="#85bfd4"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/pick_date"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/payButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:backgroundTint="#85bfd4"
+            android:fontFamily="@font/montserrat"
+            android:text="Payment Info"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
@@ -23,46 +57,20 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
+        android:text="Date"
         android:textColor="@android:color/white"
-        android:text="Pick Date Below"
         android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/dateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/montserrat"
-        android:backgroundTint="#85bfd4"
-        android:textColor="@android:color/white"
-        android:text="@string/pick_date" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:srcCompat="@drawable/stuck" />
-
-
-    <Button
-        android:id="@+id/payButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="#85bfd4"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/montserrat"
-        android:text="Payment Info" />
 
     <Button
         android:id="@+id/confirmRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#85bfd4"
-        android:textColor="@android:color/white"
         android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#85bfd4"
         android:fontFamily="@font/montserrat"
-        android:text="Confirm Request" />
+        android:text="Confirm Request"
+        android:textColor="@android:color/white" />
 
 
 </LinearLayout>

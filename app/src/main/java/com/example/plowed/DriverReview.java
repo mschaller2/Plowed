@@ -1,5 +1,6 @@
 package com.example.plowed;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,14 +19,20 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class DriverReview extends AppCompatActivity {
     Button saveRating;
     RatingBar ratingBar;
-    EditText writtenRating;
+    EditText driverName;
     ImageView profilePic;
+    Button goHome;
     private FirebaseUser mUser;
     private FirebaseStorage storage;
     private StorageReference reference;
@@ -35,24 +42,40 @@ public class DriverReview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.driver_review_activity);
-//        reference = storage.getReference();
         profilePic = (ImageView) findViewById(R.id.driverProfilePicture);
-
         saveRating = (Button) findViewById(R.id.saveRating);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        writtenRating = (EditText) findViewById(R.id.writtenReview);
+        driverName = (EditText) findViewById(R.id.writtenReview);
+        driverName.setText(getIntent().getStringExtra("name"));
+        goHome = (Button) findViewById(R.id.homeButton);
+        goHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ClientUserActivity.class));
+            }
+        });
         saveRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String rating = "Rating is: " + ratingBar.getRating() + " stars";
-//                String writtenReview = "Rating is: " + writtenRating.getText();
-                Toast.makeText(DriverReview.this, rating, Toast.LENGTH_LONG).show();
+                // Not actually validating that such a driver exists
+                final DatabaseReference db = FirebaseDatabase.getInstance().
+                        getReference(String.format("drivers/%s/ratings", driverName.getText().toString()));
+                db.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        db.child(String.format("rating%d", ((int)dataSnapshot.getChildrenCount() + 1))).setValue(ratingBar.getRating());
+                        String rating = String.format("%s-Star Rating Saved. Thanks!",
+                                ratingBar.getRating());
+                        Toast.makeText(DriverReview.this, rating, Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
-//        mUser = FirebaseAuth.getInstance().getCurrentUser();
-//        showProfilePicture();
     }
-
     private void showProfilePicture(){ // From Update Profile
         StorageReference ref = reference.child("images/" + mUser.getUid() + "/profile_pic");
         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -70,10 +93,4 @@ public class DriverReview extends AppCompatActivity {
         });
     }
 
-    public void getRecentDrivers(){
-
-    }
-    // based on recent drivers, user can rate them
-    // 1 to 5 star ratings
-    // User can add written rating
 }
