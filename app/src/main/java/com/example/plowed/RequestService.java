@@ -93,7 +93,9 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
                 datePicker.show(getSupportFragmentManager(), "date picker");
                 break;
             case R.id.payButton:
-                startActivity(new Intent(this, HandlePayment.class));
+                Intent add = new Intent(this, HandlePayment.class);
+                add.putExtra("address", getIntent().getStringExtra("address"));
+                startActivity(add);
                 break;
             case R.id.confirmRequest:
                 sendRequestToDB();

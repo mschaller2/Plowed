@@ -77,6 +77,7 @@ public class ClientUserActivity extends AppCompatActivity {
     private boolean addressEdit;
     private SharedPreferences pref;
     private Intent ratings;
+    private Intent ratingsNotif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,7 @@ public class ClientUserActivity extends AppCompatActivity {
         goToDriver = (Button) findViewById(R.id.goToDriver);
         notificationManager = NotificationManagerCompat.from(this);
         checkWeather = (Button) findViewById(R.id.check_Weather);
+        ratingsNotif = new Intent(this, Listings.class);
 
         zipCodeIn.addTextChangedListener(new TextWatcher() {
             @Override
@@ -152,8 +154,7 @@ public class ClientUserActivity extends AppCompatActivity {
         });
     }
     public void sendNotification(){
-        Intent activityIntent = new Intent(this, Listings.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, ratingsNotif, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
                 .setSmallIcon(R.drawable.logo)
                 .setContentTitle("Plowing Request Listed")
@@ -186,6 +187,7 @@ public class ClientUserActivity extends AppCompatActivity {
                                     ratingValues.add(Integer.parseInt(rating.getValue().toString()));
                                 }
                                 ratings.putExtra("ratings", ratingValues);
+                                ratingsNotif.putExtra("ratings", ratingValues);
 
                             }
                         }else{
