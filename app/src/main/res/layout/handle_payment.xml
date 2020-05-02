@@ -18,6 +18,7 @@
         android:layout_marginRight="20dp"
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="20dp"
+        android:textColor="@android:color/white"
         android:id="@+id/upi_id"/>
 
     <EditText
@@ -29,6 +30,7 @@
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="20dp"
         android:id="@+id/amount_et"
+        android:textColor="@android:color/white"
         android:inputType="numberDecimal"/>
 
 
@@ -41,6 +43,7 @@
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"
+        android:textColor="@android:color/white"
         android:id="@+id/note"/>
 
     <include

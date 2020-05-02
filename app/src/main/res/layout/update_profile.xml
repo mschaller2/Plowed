@@ -28,6 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:backgroundTint="#85bfd4"
+                android:textColor="@android:color/white"
                 android:layout_marginBottom="45dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserrat"
@@ -41,6 +43,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:ems="10"
+                android:textColor="@android:color/white"
                 android:fontFamily="@font/montserrat"
                 android:hint="Display Name"
                 android:inputType="textPersonName" />
@@ -54,6 +57,7 @@
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
                 android:hint="@string/email"
+                android:textColor="@android:color/white"
                 android:inputType="textEmailAddress" />
 
             <LinearLayout
@@ -68,6 +72,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.33"
                     android:fontFamily="@font/montserrat"
+                    android:backgroundTint="#85bfd4"
+                    android:textColor="@android:color/white"
                     android:onClick="updateProfileInfo"
                     android:text="Update Profile " />
 
@@ -78,6 +84,8 @@
                     android:layout_weight="0.33"
                     android:fontFamily="@font/montserrat"
                     android:onClick="requestToDrive"
+                    android:backgroundTint="#85bfd4"
+                    android:textColor="@android:color/white"
                     android:text="Request to Drive" />
 
                 <Button
@@ -87,6 +95,8 @@
                     android:layout_weight="0.33"
                     android:fontFamily="@font/montserrat"
                     android:onClick="sendPasswordReset"
+                    android:backgroundTint="#85bfd4"
+                    android:textColor="@android:color/white"
                     android:text="Reset Password" />
             </LinearLayout>
         </LinearLayout>

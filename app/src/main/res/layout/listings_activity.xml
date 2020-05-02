@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/montserrat"
         android:text="Available Plowing Requests"
         android:textSize="30dp" />

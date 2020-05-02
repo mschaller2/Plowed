@@ -11,6 +11,7 @@
         android:layout_gravity="center"
         android:text="Driver Review"
         android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/montserrat"
         android:textSize="30sp"/>
 
@@ -47,6 +48,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#85bfd4"
+        android:textColor="@android:color/white"
         android:text="Save Rating"/>
 
 </LinearLayout>

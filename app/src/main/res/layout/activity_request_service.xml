@@ -13,6 +13,7 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/request_service"
+        android:textColor="@android:color/white"
         android:textSize="30sp" />
 
     <TextView
@@ -22,6 +23,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
+        android:textColor="@android:color/white"
         android:text="Pick Date Below"
         android:textSize="20dp" />
 
@@ -31,6 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/montserrat"
+        android:backgroundTint="#85bfd4"
+        android:textColor="@android:color/white"
         android:text="@string/pick_date" />
 
     <ImageView
@@ -45,6 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:backgroundTint="#85bfd4"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/montserrat"
         android:text="Payment Info" />
 
@@ -52,6 +58,8 @@
         android:id="@+id/confirmRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#85bfd4"
+        android:textColor="@android:color/white"
         android:layout_gravity="center"
         android:fontFamily="@font/montserrat"
         android:text="Confirm Request" />
