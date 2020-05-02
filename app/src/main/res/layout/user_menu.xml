@@ -155,7 +155,8 @@
                 android:fontFamily="@font/montserrat"
                 android:onClick="goToDriverListings"
                 android:text="Temp Go To Driver Listings"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:visibility="invisible" />
         </LinearLayout>
     </ScrollView>
 

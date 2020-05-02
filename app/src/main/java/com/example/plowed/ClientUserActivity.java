@@ -31,6 +31,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import com.androdocs.httprequest.HttpRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 import java.util.Locale;
@@ -133,6 +139,25 @@ Button checkWeather;
         if (mUser.getDisplayName() != null){
             clientName.setText(String.format(Locale.ENGLISH, "Welcome %s",
                     mUser.getDisplayName()));
+            DatabaseReference test = FirebaseDatabase.getInstance().getReference("drivers");
+            test.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot item : dataSnapshot.getChildren()){
+                        if (item.getValue().toString().equals(mUser.getDisplayName())){
+                            goToDriver.setVisibility(View.VISIBLE);
+                        }else{
+                            goToDriver.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
         }else{
             clientName.setText(R.string.welcome);
         }

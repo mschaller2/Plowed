@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +24,8 @@ public class LoginUIActivity extends AppCompatActivity {
     private static final int SIGN_IN = 123;
     private static final int LOGOUT = 2;
     private static final int DELETE = 3;
+    private static final String PRIVACY = "https://mitchellschaller.com/privacy.html";
+    private static final String TERMS = "https://mitchellschaller.com/terms.html";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +44,9 @@ public class LoginUIActivity extends AppCompatActivity {
                 AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setAvailableProviders(providers)
-                        .setLogo(R.drawable.logo)
-                        .setTosAndPrivacyPolicyUrls(
-                                "https://mitchellschaller.com/terms.html",
-                                "https://mitchellschaller.com/privacy.html")
                         .setTheme(R.style.AppTheme)
+                        .setLogo(R.drawable.logo)
+                        .setTosAndPrivacyPolicyUrls(TERMS, PRIVACY)
                     .build(),
                 SIGN_IN);
     }
