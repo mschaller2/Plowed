@@ -10,6 +10,7 @@
         android:layout_gravity="center"
         android:text="Listings"
         android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/montserrat"
         android:textSize="30dp"/>
 
@@ -21,6 +22,7 @@
         android:fontFamily="@font/montserrat"
         android:layout_marginTop="20dp"
         android:text="Your assignments..."
+        android:textColor="@android:color/white"
         android:textSize="20dp"/>
 
 </LinearLayout>
