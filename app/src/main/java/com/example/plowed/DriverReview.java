@@ -33,11 +33,6 @@ public class DriverReview extends AppCompatActivity {
     EditText driverName;
     ImageView profilePic;
     Button goHome;
-    private FirebaseUser mUser;
-    private FirebaseStorage storage;
-    private StorageReference reference;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,22 +68,6 @@ public class DriverReview extends AppCompatActivity {
 
                     }
                 });
-            }
-        });
-    }
-    private void showProfilePicture(){ // From Update Profile
-        StorageReference ref = reference.child("images/" + mUser.getUid() + "/profile_pic");
-        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                String imageURL = uri.toString();
-                Log.i("Image URL", imageURL);
-                Glide.with(getApplicationContext()).load(imageURL).into(profilePic);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Log.e("Image", "Image download failure");
             }
         });
     }

@@ -25,7 +25,6 @@ public class LoginUIActivity extends AppCompatActivity {
     private static final int DELETE = 3;
     private static final String PRIVACY = "https://mitchellschaller.com/privacy.html";
     private static final String TERMS = "https://mitchellschaller.com/terms.html";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

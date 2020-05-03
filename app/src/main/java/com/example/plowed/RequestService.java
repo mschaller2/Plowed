@@ -62,7 +62,6 @@ public class RequestService extends AppCompatActivity implements DatePickerDialo
         confirmRequest.setOnClickListener(this);
     }
 
-
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();

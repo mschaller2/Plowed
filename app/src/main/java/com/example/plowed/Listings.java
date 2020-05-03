@@ -1,12 +1,7 @@
 package com.example.plowed;
 
-import android.app.Notification;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,15 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.ListIterator;
 import java.util.Locale;
-import java.util.Set;
-
-import static com.example.plowed.App.CHANNEL_1_ID;
 
 public class Listings extends AppCompatActivity {
     private FirebaseUser mUser;
@@ -58,9 +46,7 @@ public class Listings extends AppCompatActivity {
         notificationManager = NotificationManagerCompat.from(this);
         userConfig();
         fetchListingsFromDB();
-
     }
-
     private void fetchListingsFromDB(){
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("assignments");
         db.addValueEventListener(new ValueEventListener() {

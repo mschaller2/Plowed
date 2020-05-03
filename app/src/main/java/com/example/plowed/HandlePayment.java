@@ -30,8 +30,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Map;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -137,7 +135,6 @@ public class HandlePayment extends AppCompatActivity {
         });
 
     }
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private static JSONObject baseConfigurationJson(){
         try {
@@ -246,12 +243,10 @@ public class HandlePayment extends AppCompatActivity {
         if (paymentInfo == null) {
             return;
         }
-
         try {
             JSONObject paymentMethodData = new JSONObject(paymentInfo).getJSONObject("paymentMethodData");
             // If the gateway is set to "example", no payment information is returned - instead, the
             // token will only consist of "examplePaymentMethodToken".
-
             final JSONObject tokenizationData = paymentMethodData.getJSONObject("tokenizationData");
             final String tokenizationType = tokenizationData.getString("type");
             final String token = tokenizationData.getString("token");

@@ -195,30 +195,8 @@ public class ClientUserActivity extends AppCompatActivity {
                         }
                     }
                 }
-                    /*
-                    for (DataSnapshot drivers : dataSnapshot.getChildren()){
-                        for (DataSnapshot driver : drivers.getChildren()){
-                            if (driver.getKey().equals("Ratings")){
-                                ArrayList<Integer> ratingValues = new ArrayList<>();
-                                ratings = new Intent(getApplicationContext(), Listings.class);
-                                for (DataSnapshot rating : driver.getChildren()){
-                                    ratingValues.add(Integer.parseInt(rating.getValue().toString()));
-                                }
-                                ratings.putExtra("ratings", ratingValues);
-                            }else{
-                                if (driver.getValue().toString().equals(mUser.getDisplayName())){
-                                    goToDriver.setVisibility(View.VISIBLE);
-                                }else{
-                                    goToDriver.setVisibility(View.INVISIBLE);
-                                }
-                            }
-                        }
-
-                    }
-                     */
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                 }
             });
 
@@ -243,9 +221,7 @@ public class ClientUserActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Address cannot be blank", Toast.LENGTH_LONG).show();
         }
-
     }
-
     public void goToDriverListings(View view){
         if (ratings == null){
             startActivity(new Intent(this, Listings.class));
@@ -254,7 +230,6 @@ public class ClientUserActivity extends AppCompatActivity {
         }
 
     }
-
     // Menu callbacks
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -359,7 +334,5 @@ public class ClientUserActivity extends AppCompatActivity {
         }
     }
     // END WEATHER
-
-
 
 }
